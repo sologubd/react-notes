@@ -11,10 +11,10 @@ const NotesList: React.FC<Props> = ({notes}: Props) => {
     <div>
       {
         notes.map((item) => {
-          return <section className="section is-small note-list-ite">
+          return <section className="section is-small note-list-item">
           <h1>{item.title}</h1>
           <div className="note">
-            {item.text}
+            {item.text.slice(0, 200)}
           </div>          
           </section>
         })
