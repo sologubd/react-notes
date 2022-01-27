@@ -7895,9 +7895,5 @@ body {
   background-color: #1d1f22;
   color: #dddddd; }
 
-::placeholder {
-  color: red;
-  opacity: 1; }
-
 #root {
   height: 100%; }
