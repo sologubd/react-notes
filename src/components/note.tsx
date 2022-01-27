@@ -1,26 +1,23 @@
-import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
 
+import { Note as NoteType, Mode } from "../types";
 
-type NotesProps = {
-  title: string,
-  text: string,
+
+type Props = {
+  note: NoteType,
 }
 
-class Note extends React.Component<NotesProps> {
-  render() {
-    return (
-      <section className="section">
-        <div className="container">
-          <h1 className="title">
-            {this.props.title}
-          </h1>            
-          {this.props.text}
-        </div>
-      </section>
-    )
-  }
+const Note: React.FC<Props> = ({note}) => {
+  return (
+    <section className="section">
+      <div className="container">
+        <h1 className="title">
+          {note.title}
+        </h1>            
+        {note.text}
+      </div>
+    </section>
+  )
 }
 
 export { Note }
-export type { NotesProps }

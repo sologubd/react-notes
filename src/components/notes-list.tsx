@@ -1,24 +1,26 @@
 import React, { ReactNode } from "react";
-import { NotesProps } from "./note";
+import { Note } from "../types";
 
 
-type NotesListProps = {
-  notes: NotesProps[],
+type Props = {
+  notes: Note[],
 }
 
-class NotesList extends React.Component<NotesListProps> {
-  render() {
-    return this.props.notes.map((item): ReactNode => {
-      return (
-        <section className="section is-small note">
+const NotesList = ({notes}: Props) => {
+  return (
+    <div>
+      {
+        notes.map((item) => {
+          return <section className="section is-small note-list-ite">
           <h1>{item.title}</h1>
           <div className="note">
             {item.text}
           </div>          
-        </section>
-      )
-    })
-  }
+          </section>
+        })
+      }
+    </div>
+  )
 }
 
 export { NotesList };
