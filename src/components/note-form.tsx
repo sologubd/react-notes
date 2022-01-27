@@ -1,17 +1,17 @@
 import React from "react";
 
-import { INote, Mode } from "../types";
+import { INote } from "../types";
 
 
 type Props = {
   note: INote,
-  setMode: (mode: Mode) => void,
+  goToMainView: () => void,
 }
 
 
-const NoteForm: React.FC<Props> = ({note, setMode}) => {
+const NoteForm: React.FC<Props> = ({note, goToMainView}) => {
   const handleCancelBtnClick = (e: React.MouseEvent<HTMLElement>) => {
-    setMode(Mode.VIEW);
+    goToMainView();
   }
   return (
     <div className="section">

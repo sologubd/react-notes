@@ -14,6 +14,8 @@ const App: React.FC = ({}) => {
   const [mode, setMode] = useState<Mode>(Mode.VIEW);
   const [currentNote, setCurrentNote] = useState<INote>(WelcomeNote);
 
+  const setViewMode = () => setMode(Mode.VIEW);
+
   return (
     <div className="columns">
       <div className="column">
@@ -22,7 +24,7 @@ const App: React.FC = ({}) => {
       </div>
       <div className="column is-three-quarters content">
         {(mode === Mode.VIEW) && <Note note={currentNote} />}
-        {(mode === Mode.EDIT) && <NoteForm setMode={setMode} note={currentNote} />}
+        {(mode === Mode.EDIT) && <NoteForm goToMainView={setViewMode} note={currentNote} />}
       </div>
     </div>
   );
