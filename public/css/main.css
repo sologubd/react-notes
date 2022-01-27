@@ -7833,7 +7833,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
       padding: 3rem 3rem; } }
 
 .section {
-  padding: 3rem 1.5rem; }
+  padding: 1rem; }
   @media screen and (min-width: 1024px) {
     .section {
       padding: 3rem 3rem; }
@@ -7845,3 +7845,55 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 .footer {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem; }
+
+html, body {
+  background-color: #1e1e1e; }
+
+body {
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: #dddddd; }
+
+.note-list-item {
+  background-color: #1d1f22;
+  padding: 0.5rem 0.1rem;
+  margin: 0.5rem 0.75rem 0.5rem 1.75rem;
+  border-bottom: 0.1rem solid #333538;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.25; }
+  .note-list-item h1 {
+    font-weight: 800;
+    padding: 0rem 0.5rem; }
+
+.navbar-menu, .navbar {
+  background-color: #26282b; }
+
+.navbar-item {
+  color: #dddddd; }
+
+.note {
+  padding: 0rem 0.5rem; }
+
+.selected {
+  background-color: #9c812a;
+  border-radius: 0.25rem; }
+
+.columns {
+  height: 100%;
+  padding: 0rem;
+  margin-top: 0.1rem; }
+  .columns .column {
+    padding: 0rem;
+    background-color: #1d1f22;
+    border-right: 0.1rem solid black; }
+  .columns .column.content {
+    background-color: #1e1e1e; }
+
+.input, .textarea {
+  border-color: black;
+  background-color: #1d1f22;
+  color: #dddddd; }
+
+#root {
+  height: 100%; }
