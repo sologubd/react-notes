@@ -10,7 +10,7 @@ type Props = {
 const NotesNavbar: React.FC<Props> = ({setMode}) => {
   
   const addNote = (e: React.MouseEvent<HTMLElement>) => {
-    console.info(e);
+    setMode(Mode.EDIT);
   }
 
   return (

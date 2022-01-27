@@ -1,12 +1,12 @@
 import React, { ReactNode } from "react";
-import { Note } from "../types";
+import { INote } from "../types";
 
 
 type Props = {
-  notes: Note[],
+  notes: INote[],
 }
 
-const NotesList = ({notes}: Props) => {
+const NotesList: React.FC<Props> = ({notes}: Props) => {
   return (
     <div>
       {

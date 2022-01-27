@@ -7890,5 +7890,14 @@ body {
   .columns .column.content {
     background-color: #1e1e1e; }
 
+.input, .textarea {
+  border-color: black;
+  background-color: #1d1f22;
+  color: #dddddd; }
+
+::placeholder {
+  color: red;
+  opacity: 1; }
+
 #root {
   height: 100%; }

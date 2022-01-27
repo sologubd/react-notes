@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Note as NoteType, Mode } from "../types";
+import { INote } from "../types";
 
 
 type Props = {
-  note: NoteType,
+  note: INote,
 }
 
 const Note: React.FC<Props> = ({note}) => {

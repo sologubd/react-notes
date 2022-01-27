@@ -1,6 +1,9 @@
-export type Note = {
+export interface INote {
   title: string,
   text: string,
 }
 
-export type Mode = "view" | "edit";
+export enum Mode {
+  VIEW = "VIEW",
+  EDIT = "EDIT"
+}
