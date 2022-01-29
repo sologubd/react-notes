@@ -4,11 +4,11 @@ import {Mode} from "../types";
 
 
 type Props = {
-  setMode: (mode: Mode) => void
+  setMode: (mode: Mode) => void,
+  removeNote: () => void,
 }
 
-const NotesNavbar: React.FC<Props> = ({setMode}) => {
-  
+const NotesNavbar: React.FC<Props> = ({setMode, removeNote}) => {
   const addNote = (e: React.MouseEvent<HTMLElement>) => {
     setMode(Mode.EDIT);
   }
@@ -25,7 +25,7 @@ const NotesNavbar: React.FC<Props> = ({setMode}) => {
               <span className="icon is-medium">
                 <i className="fa fa-edit"></i>
               </span>
-              <span className="icon is-medium">
+              <span className="icon is-medium" onClick={removeNote}>
                 <i className="fa fa-trash"></i>
               </span>
             </div>
