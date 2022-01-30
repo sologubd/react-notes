@@ -16,7 +16,7 @@ interface IFieldValidator {
 
 
 const NoteForm: React.FC<Props> = ({note, addNote, goToMainView}) => {
-  const [title, setTitile] = useState<string>("")
+  const [title, setTitle] = useState<string>("")
   const [text, setText] = useState<string>("")
   const [titleValidator, setTitleValidator] = useState<IFieldValidator>({isValid: false, errors: []})
   const [textValidator, setTextValidator] = useState<IFieldValidator>({isValid: true, errors: []})
@@ -34,7 +34,7 @@ const NoteForm: React.FC<Props> = ({note, addNote, goToMainView}) => {
     setTextValidator({isValid: !(extraCharsInText > 0), errors: errors})
   }
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitile(e.target.value);
+    setTitle(e.target.value);
     validateTitle(e.target.value);
   }
   const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

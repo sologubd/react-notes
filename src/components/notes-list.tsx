@@ -13,9 +13,9 @@ const NotesList: React.FC<Props> = ({notes, selectedNoteId, showNote}: Props) =>
     <div>
       {
         notes.map((item, id) => {
-          const selected = (selectedNoteId == id) ? "selected" : ""
+          const selected = (selectedNoteId === id) ? "selected" : ""
           return (
-            <section id={`${id}`} key={`${id}`} className={`section is-small note-list-item ${selected}`}
+            <section key={id} className={`section is-small note-list-item ${selected}`}
               onClick={() => {showNote(id)}}
             >
               <h1>{item.title}</h1>

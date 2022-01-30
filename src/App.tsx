@@ -28,10 +28,11 @@ const App: React.FC = ({}) => {
   }
   const removeNote = () => {
     if (selectedNoteId !== null){
-      notes.splice(selectedNoteId, 1);
-      setNotes(notes);
-      window.localStorage.setItem("notes", JSON.stringify(notes));
-      (notes.length === 0) ? setSelectedNoteId(null) : setSelectedNoteId(0);
+      const updateNotes = [...notes];
+      updateNotes.splice(selectedNoteId, 1);
+      window.localStorage.setItem("notes", JSON.stringify(updateNotes));
+      setNotes(updateNotes);
+      (updateNotes.length === 0) ? setSelectedNoteId(null) : setSelectedNoteId(0);
     }
   }
 
