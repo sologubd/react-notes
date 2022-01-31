@@ -16,7 +16,7 @@ const NotesList: React.FC<Props> = ({notes, selectedNoteId, showNote}: Props) =>
           const selected = (selectedNoteId === id) ? "selected" : ""
           return (
             <section key={id} className={`section is-small note-list-item ${selected}`}
-              onClick={() => {showNote(id)}}
+              onClick={() => showNote(id)}
             >
               <h1>{item.title}</h1>
               <div className="note">

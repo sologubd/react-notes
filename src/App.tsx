@@ -5,13 +5,8 @@ import { NoteForm } from "./components/note-form";
 import { NotesList } from "./components/notes-list";
 import { NotesNavbar } from "./components/navigation";
 import { Mode, INote } from "./types";
+import { getNotes, saveNotes } from "./note-model";
 
-
-const getNotes = () => {
-  let notes = window.localStorage.getItem("notes");
-  if (notes === null) return [];
-  return JSON.parse(notes);
-}
 
 const App: React.FC = ({}) => {
   const [notes, setNotes] = useState<INote[]>(getNotes());
@@ -22,17 +17,17 @@ const App: React.FC = ({}) => {
   const setViewMode = () => setMode(Mode.VIEW);
   const addNote = (note: INote) => {
     const updatedNotes = [note, ...notes];
-    setNotes(updatedNotes)
     setSelectedNoteId(0);
-    window.localStorage.setItem("notes", JSON.stringify(updatedNotes));
+    setNotes(updatedNotes)
+    saveNotes(updatedNotes);
   }
   const removeNote = () => {
     if (selectedNoteId !== null){
       const updateNotes = [...notes];
       updateNotes.splice(selectedNoteId, 1);
-      window.localStorage.setItem("notes", JSON.stringify(updateNotes));
-      setNotes(updateNotes);
       (updateNotes.length === 0) ? setSelectedNoteId(null) : setSelectedNoteId(0);
+      saveNotes(updateNotes);
+      setNotes(updateNotes);
     }
   }
 
