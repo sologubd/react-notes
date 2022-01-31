@@ -3,8 +3,8 @@ import React from "react";
 import { Mode } from "../types";
 
 type Props = {
-  setMode: (mode: Mode) => void;
-  removeNote: () => void;
+  readonly setMode: (mode: Mode) => void;
+  readonly removeNote: () => void;
 };
 
 const NotesNavbar: React.FC<Props> = ({ setMode, removeNote }) => {

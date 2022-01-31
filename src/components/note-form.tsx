@@ -4,9 +4,9 @@ import { INote } from "../types";
 import { validateTitle, validateText } from "../note-model";
 
 type Props = {
-  note: INote;
-  goToMainView: () => void;
-  addNote: (note: INote) => void;
+  readonly note: INote;
+  readonly goToMainView: () => void;
+  readonly addNote: (note: INote) => void;
 };
 
 const NoteForm: React.FC<Props> = ({ note, addNote, goToMainView }) => {
@@ -57,8 +57,7 @@ const NoteForm: React.FC<Props> = ({ note, addNote, goToMainView }) => {
             id="note"
             className="textarea"
             placeholder="Add a Note"
-            onChange={(e) => setText(e.target.value)}
-          ></textarea>
+            onChange={(e) => setText(e.target.value)}></textarea>
           {showErrors &&
             descriptionValidationErrors.map((err) => (
               <p key={err} className="help is-danger">

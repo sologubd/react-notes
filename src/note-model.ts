@@ -1,4 +1,4 @@
-import { Mode, INote } from "./types";
+import { INote } from "./types";
 
 export const validateTitle = (value: string): [boolean, string[]] => {
   let isValid = true,
