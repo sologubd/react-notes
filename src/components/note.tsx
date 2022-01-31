@@ -1,12 +1,13 @@
 import React from "react";
 
+import { NotesState } from "../context";
 import { INote } from "../types";
 
 type Props = {
   readonly note: INote;
 };
 
-const Note: React.FC<Props> = ({ note }) => {
+const NoteView: React.FC<Props> = ({ note }) => {
   return (
     <section className="section">
       <div className="container">
@@ -17,4 +18,12 @@ const Note: React.FC<Props> = ({ note }) => {
   );
 };
 
-export { Note };
+export const Note: React.FC = () => {
+  const [state] = NotesState();
+
+  const note =
+    state.selectedNoteId !== null
+      ? state.notes[state.selectedNoteId]
+      : { title: "Welcome to Web Notes App!", text: "" };
+  return <NoteView note={note} />;
+};
