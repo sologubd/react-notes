@@ -1,17 +1,16 @@
 import React from "react";
 
-import {Mode} from "../types";
-
+import { Mode } from "../types";
 
 type Props = {
-  setMode: (mode: Mode) => void,
-  removeNote: () => void,
-}
+  setMode: (mode: Mode) => void;
+  removeNote: () => void;
+};
 
-const NotesNavbar: React.FC<Props> = ({setMode, removeNote}) => {
+const NotesNavbar: React.FC<Props> = ({ setMode, removeNote }) => {
   const addNote = (e: React.MouseEvent<HTMLElement>) => {
     setMode(Mode.EDIT);
-  }
+  };
 
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -33,7 +32,7 @@ const NotesNavbar: React.FC<Props> = ({setMode, removeNote}) => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export { NotesNavbar }
+export { NotesNavbar };
