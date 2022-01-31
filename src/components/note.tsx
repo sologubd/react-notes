@@ -13,7 +13,7 @@ const Note: React.FC<Props> = ({note}) => {
       <div className="container">
         <h1 className="title">
           {note.title}
-        </h1>            
+        </h1>
         {note.text}
       </div>
     </section>
