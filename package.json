@@ -26,7 +26,7 @@
     "eject": "react-scripts eject",
     "css-build": "node-sass --omit-source-map-url src/sass/main.sass -o public/css/",
     "css-watch": "npm run css-build -- --watch",
-    "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
+    "pretty": "prettier --write \"./**/*.{ts,tsx,js,jsx,json}\""
   },
   "eslintConfig": {
     "extends": [
