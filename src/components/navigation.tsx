@@ -4,18 +4,18 @@ import { Mode } from "../types";
 import { NotesState } from "../context";
 
 type Props = {
-  readonly goToMainView: () => void;
+  readonly addNote: () => void;
   readonly removeNote: () => void;
 };
 
-const NotesNavbarView: React.FC<Props> = ({ goToMainView, removeNote }) => {
+const NotesNavbarView: React.FC<Props> = ({ addNote, removeNote }) => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <span className="icon is-medium" onClick={goToMainView}>
+              <span className="icon is-medium" onClick={addNote}>
                 <i className="fa fa-plus"></i>
               </span>
               <span className="icon is-medium">
@@ -34,6 +34,6 @@ const NotesNavbarView: React.FC<Props> = ({ goToMainView, removeNote }) => {
 
 export const NotesNavbar: React.FC = () => {
   const [_, actions] = NotesState();
-  const goToMainView = () => actions.changeView(Mode.EDIT);
-  return <NotesNavbarView goToMainView={goToMainView} removeNote={actions.removeNote} />;
+  const addNote = () => actions.changeView(Mode.EDIT);
+  return <NotesNavbarView addNote={addNote} removeNote={actions.removeNote} />;
 };
