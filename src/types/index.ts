@@ -1,6 +1,7 @@
 import { Mode, NoteListEvent, ViewEvent } from "./enums";
 
 export * from "./enums";
+export * from "./null-objects";
 
 export interface INote {
   readonly title: string;

@@ -1,11 +1,9 @@
-import { saveNotes } from "./db";
 import { INoteListState, Mode, NoteListEvent, ViewEvent, EventType } from "./types";
 
 export const notesReducer = (state: INoteListState, event: EventType): INoteListState => {
   switch (event.type) {
     case NoteListEvent.ADD_NOTE: {
       const notes = [event.note, ...state.notes];
-      saveNotes(notes);
       return {
         ...state,
         notes: notes,
@@ -22,23 +20,13 @@ export const notesReducer = (state: INoteListState, event: EventType): INoteList
       };
     }
     case NoteListEvent.REMOVE_NOTE: {
-      if (state.selectedNoteId !== null) {
-        const notes = [...state.notes];
-        notes.splice(state.selectedNoteId, 1);
-        saveNotes(notes);
-
-        return {
-          ...state,
-          notes: notes,
-          selectedNoteId: notes.length === 0 ? null : 0,
-          mode: Mode.VIEW,
-        };
-      }
+      if (state.selectedNoteId === null) return state;
+      const notes = state.notes.filter((_, index) => index !== state.selectedNoteId);
       return {
         ...state,
-        notes: state.notes,
-        selectedNoteId: state.selectedNoteId,
-        mode: state.mode,
+        notes: notes,
+        selectedNoteId: notes.length === 0 ? null : 0,
+        mode: Mode.VIEW,
       };
     }
     case ViewEvent.CHANGE_VIEW: {

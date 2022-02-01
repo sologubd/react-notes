@@ -1,6 +1,6 @@
 import React from "react";
 import { INote } from "../types";
-import { NotesState } from "../context";
+import { useNoteState } from "../context";
 
 type Props = {
   readonly notes: INote[];
@@ -25,6 +25,6 @@ const NotesListView: React.FC<Props> = ({ notes, selectedNoteId, selectNote }: P
 };
 
 export const NotesList: React.FC = () => {
-  const [state, actions] = NotesState();
+  const [state, actions] = useNoteState();
   return <NotesListView notes={state.notes} selectedNoteId={state.selectedNoteId} selectNote={actions.selectNote} />;
 };

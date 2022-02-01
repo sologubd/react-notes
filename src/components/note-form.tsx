@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { NotesState } from "../context";
+import { useNoteState } from "../context";
 import { INote, Mode } from "../types";
 import { validateTitle, validateText } from "../validator";
 
@@ -83,7 +83,8 @@ const NoteFormView: React.FC<Props> = ({ addNote, goToMainView }) => {
 };
 
 export const NoteForm: React.FC = () => {
-  const [_, actions] = NotesState();
+  const useNoteListActions = () => useNoteState()[1];
+  const actions = useNoteListActions();
   const goToMainView = () => actions.changeView(Mode.VIEW);
   return <NoteFormView addNote={actions.addNote} goToMainView={goToMainView} />;
 };

@@ -5,7 +5,7 @@ import { NoteForm } from "./note-form";
 import { NotesList } from "./notes-list";
 import { NotesNavbar } from "./navigation";
 import { Mode } from "../types";
-import { NotesState } from "../context";
+import { useNoteState } from "../context";
 
 type Props = {
   readonly viewMode: Mode;
@@ -27,6 +27,7 @@ const MainView: React.FC<Props> = ({ viewMode }) => {
 };
 
 export const Main: React.FC = () => {
-  const [state] = NotesState();
+  const useNoteListState = () => useNoteState()[0];
+  const state = useNoteListState();
   return <MainView viewMode={state.mode} />;
 };
