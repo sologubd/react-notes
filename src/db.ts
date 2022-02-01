@@ -1,7 +1,7 @@
 import { INote } from "./types";
 
 export const getNotes = (): INote[] => {
-  let notes = window.localStorage.getItem("notes");
+  const notes = window.localStorage.getItem("notes");
   if (notes === null) return [];
   return JSON.parse(notes);
 };
