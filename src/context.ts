@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 
 import { getNotes, saveNotes } from "./db";
-import { INote, Dispatcher, Mode, NoteListEvent, NullDispatcher, ViewEvent } from "./types";
+import { INote, Dispatcher, Mode, NoteListEvent, nullDispathcer, ViewEvent } from "./types";
 
 interface NotesListState {
   readonly notes: INote[];
@@ -44,7 +44,7 @@ export const changeView =
       mode,
     });
 
-export const NotesContext = React.createContext<[NotesListState, Dispatcher]>([initialState, NullDispatcher]);
+export const NotesContext = React.createContext<[NotesListState, Dispatcher]>([initialState, nullDispathcer]);
 export const useNoteState = () => {
   const [state, dispatch] = useContext(NotesContext);
   const [actions] = useState(() => ({
@@ -60,3 +60,6 @@ export const useNoteState = () => {
 
   return [state, actions] as const;
 };
+
+export const useNoteListState = () => useNoteState()[0];
+export const useNoteListActions = () => useNoteState()[1];

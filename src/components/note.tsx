@@ -1,7 +1,7 @@
 import React from "react";
 
-import { useNoteState } from "../context";
-import { INote, NullNote } from "../types";
+import { useNoteListState } from "../context";
+import { INote } from "../types";
 
 type Props = {
   readonly note: INote;
@@ -19,8 +19,13 @@ const NoteView: React.FC<Props> = ({ note }) => {
 };
 
 export const Note: React.FC = () => {
-  const useNoteListState = () => useNoteState()[0];
   const state = useNoteListState();
-  const note = state.selectedNoteId !== null ? state.notes[state.selectedNoteId] : NullNote;
+  const note =
+    state.selectedNoteId !== null
+      ? state.notes[state.selectedNoteId]
+      : {
+          title: "Welcome to Web Notes App!",
+          text: "",
+        };
   return <NoteView note={note} />;
 };

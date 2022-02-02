@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Mode } from "../types";
-import { useNoteState } from "../context";
+import { useNoteListActions } from "../context";
 
 type Props = {
   readonly addNote: () => void;
@@ -33,7 +33,6 @@ const NotesNavbarView: React.FC<Props> = ({ addNote, removeNote }) => {
 };
 
 export const NotesNavbar: React.FC = () => {
-  const useNoteListActions = () => useNoteState()[1];
   const actions = useNoteListActions();
   const addNote = () => actions.changeView(Mode.EDIT);
   return <NotesNavbarView addNote={addNote} removeNote={actions.removeNote} />;
