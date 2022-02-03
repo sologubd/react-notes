@@ -1,17 +1,14 @@
 import React from "react";
 
 import { Mode } from "../types";
+import { useNoteListActions } from "../context";
 
 type Props = {
-  setMode: (mode: Mode) => void;
-  removeNote: () => void;
+  readonly addNote: () => void;
+  readonly removeNote: () => void;
 };
 
-const NotesNavbar: React.FC<Props> = ({ setMode, removeNote }) => {
-  const addNote = (e: React.MouseEvent<HTMLElement>) => {
-    setMode(Mode.EDIT);
-  };
-
+const NotesNavbarView: React.FC<Props> = ({ addNote, removeNote }) => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div id="navbarBasicExample" className="navbar-menu">
@@ -35,4 +32,7 @@ const NotesNavbar: React.FC<Props> = ({ setMode, removeNote }) => {
   );
 };
 
-export { NotesNavbar };
+export const NotesNavbar: React.FC = () => {
+  const actions = useNoteListActions();
+  return <NotesNavbarView addNote={actions.goToEditView} removeNote={actions.removeNote} />;
+};

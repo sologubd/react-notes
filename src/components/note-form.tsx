@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import { INote } from "../types";
-import { validateTitle, validateText } from "../note-model";
+import { useNoteListActions } from "../context";
+import { INote, Mode } from "../types";
+import { validateTitle, validateText } from "../validator";
 
 type Props = {
-  note: INote;
-  goToMainView: () => void;
-  addNote: (note: INote) => void;
+  readonly addNote: (note: INote) => void;
+  readonly goToMainView: () => void;
 };
 
-const NoteForm: React.FC<Props> = ({ note, addNote, goToMainView }) => {
+const NoteFormView: React.FC<Props> = ({ addNote, goToMainView }) => {
   const [title, setTitle] = useState<string>("");
   const [text, setText] = useState<string>("");
   const [showErrors, setShowErrors] = useState<boolean>(false);
@@ -57,8 +57,7 @@ const NoteForm: React.FC<Props> = ({ note, addNote, goToMainView }) => {
             id="note"
             className="textarea"
             placeholder="Add a Note"
-            onChange={(e) => setText(e.target.value)}
-          ></textarea>
+            onChange={(e) => setText(e.target.value)}></textarea>
           {showErrors &&
             descriptionValidationErrors.map((err) => (
               <p key={err} className="help is-danger">
@@ -83,4 +82,7 @@ const NoteForm: React.FC<Props> = ({ note, addNote, goToMainView }) => {
   );
 };
 
-export { NoteForm };
+export const NoteForm: React.FC = () => {
+  const actions = useNoteListActions();
+  return <NoteFormView addNote={actions.addNote} goToMainView={actions.goToMainView} />;
+};
