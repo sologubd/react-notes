@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 
 import { Main } from "./components/main";
 import { notesReducer } from "./note-reducer";
@@ -8,8 +8,8 @@ import { Mode } from "./types";
 import { getNotes, saveNotes } from "./db";
 
 const NotesListProvider: React.FC = ({ children }) => {
-  const storedNotes = getNotes();
-  const selectedNoteId = storedNotes.length == 0 ? null : 0;
+  const [storedNotes] = useState(() => getNotes());
+  const selectedNoteId = storedNotes.length === 0 ? null : 0;
   const appState = {
     notes: storedNotes,
     selectedNoteId: selectedNoteId,

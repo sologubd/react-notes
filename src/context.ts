@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { INote, Dispatcher, Mode, NoteListEvent, nullDispathcer, ChangeViewEvent } from "./types";
+import { INote, Dispatcher, Mode, NoteListEvent, nullDispathcer, ViewEvent } from "./types";
 
 interface NotesListState {
   readonly notes: INote[];
@@ -34,15 +34,13 @@ export const removeNote = (dispatch: Dispatcher) => (): void =>
     type: NoteListEvent.REMOVE_NOTE,
   });
 
-export const goToMainView = (dispatch: Dispatcher) => (): void =>
-  dispatch({
-    type: ChangeViewEvent.GO_TO_MAIN_VIEW,
-  });
-
-export const goToEditView = (dispatch: Dispatcher) => (): void =>
-  dispatch({
-    type: ChangeViewEvent.GO_TO_EDIT_VIEW,
-  });
+export const changeView =
+  (dispatch: Dispatcher) =>
+  (mode: Mode): void =>
+    dispatch({
+      type: ViewEvent.CHANGE_VIEW,
+      mode,
+    });
 
 export const NotesContext = React.createContext<[NotesListState, Dispatcher]>([initialState, nullDispathcer]);
 export const useNoteState = () => {
@@ -51,8 +49,8 @@ export const useNoteState = () => {
     addNote: addNote(dispatch),
     selectNote: selectNote(dispatch),
     removeNote: removeNote(dispatch),
-    goToMainView: goToMainView(dispatch),
-    goToEditView: goToEditView(dispatch),
+    goToMainView: () => changeView(dispatch)(Mode.VIEW),
+    goToEditView: () => changeView(dispatch)(Mode.EDIT),
   }));
 
   return [state, actions] as const;

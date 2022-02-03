@@ -1,4 +1,4 @@
-import { Mode, NoteListEvent, ChangeViewEvent } from "./enums";
+import { Mode, NoteListEvent, ViewEvent } from "./enums";
 
 export * from "./enums";
 export * from "./null-objects";
@@ -22,12 +22,9 @@ export type IRemoveNoteEvent = {
   readonly type: NoteListEvent.REMOVE_NOTE;
 };
 
-export type IGoToMainViewEvent = {
-  readonly type: ChangeViewEvent.GO_TO_MAIN_VIEW;
-};
-
-export type IGoToEditViewEvent = {
-  readonly type: ChangeViewEvent.GO_TO_EDIT_VIEW;
+export type IChangeViewEvent = {
+  readonly type: ViewEvent.CHANGE_VIEW;
+  readonly mode: Mode;
 };
 
 export interface INoteListState {
@@ -36,6 +33,6 @@ export interface INoteListState {
   readonly selectedNoteId: number | null;
 }
 
-export type EventType = IAddNoteEvent | IRemoveNoteEvent | ISelectNoteEvent | IGoToMainViewEvent | IGoToEditViewEvent;
+export type EventType = IAddNoteEvent | IRemoveNoteEvent | ISelectNoteEvent | IChangeViewEvent;
 
 export type Dispatcher = (event: EventType) => void;

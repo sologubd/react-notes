@@ -1,4 +1,4 @@
-import { INoteListState, Mode, NoteListEvent, ChangeViewEvent, EventType } from "./types";
+import { INoteListState, Mode, NoteListEvent, ViewEvent, EventType } from "./types";
 
 export const notesReducer = (state: INoteListState, event: EventType): INoteListState => {
   switch (event.type) {
@@ -29,20 +29,12 @@ export const notesReducer = (state: INoteListState, event: EventType): INoteList
         mode: Mode.VIEW,
       };
     }
-    case ChangeViewEvent.GO_TO_MAIN_VIEW: {
+    case ViewEvent.CHANGE_VIEW: {
       return {
         ...state,
         notes: state.notes,
         selectedNoteId: state.selectedNoteId,
-        mode: Mode.VIEW,
-      };
-    }
-    case ChangeViewEvent.GO_TO_EDIT_VIEW: {
-      return {
-        ...state,
-        notes: state.notes,
-        selectedNoteId: state.selectedNoteId,
-        mode: Mode.EDIT,
+        mode: event.mode,
       };
     }
   }
