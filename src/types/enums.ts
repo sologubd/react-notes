@@ -9,6 +9,7 @@ export enum NoteListEvent {
   SELECT_NOTE = "SELECT_NOTE",
 }
 
-export enum ViewEvent {
-  CHANGE_VIEW = "CHANGE_VIEW",
+export enum ChangeViewEvent {
+  GO_TO_MAIN_VIEW = "GO_TO_MAIN_VIEW",
+  GO_TO_EDIT_VIEW = "GO_TO_EDIT_VIEW",
 }

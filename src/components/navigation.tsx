@@ -34,6 +34,5 @@ const NotesNavbarView: React.FC<Props> = ({ addNote, removeNote }) => {
 
 export const NotesNavbar: React.FC = () => {
   const actions = useNoteListActions();
-  const addNote = () => actions.changeView(Mode.EDIT);
-  return <NotesNavbarView addNote={addNote} removeNote={actions.removeNote} />;
+  return <NotesNavbarView addNote={actions.goToEditView} removeNote={actions.removeNote} />;
 };

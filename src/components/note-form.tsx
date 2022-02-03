@@ -84,6 +84,5 @@ const NoteFormView: React.FC<Props> = ({ addNote, goToMainView }) => {
 
 export const NoteForm: React.FC = () => {
   const actions = useNoteListActions();
-  const goToMainView = () => actions.changeView(Mode.VIEW);
-  return <NoteFormView addNote={actions.addNote} goToMainView={goToMainView} />;
+  return <NoteFormView addNote={actions.addNote} goToMainView={actions.goToMainView} />;
 };
