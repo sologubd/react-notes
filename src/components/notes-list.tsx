@@ -1,6 +1,8 @@
 import React from "react";
 import { INote } from "../types";
-import { useNoteState } from "../context";
+import { useNoteState } from "../note-context";
+import { NotesNavbar } from "./navigation";
+import { Note } from "./note";
 
 type Props = {
   readonly notes: INote[];
@@ -10,16 +12,22 @@ type Props = {
 
 const NotesListView: React.FC<Props> = ({ notes, selectedNoteId, selectNote }: Props) => {
   return (
-    <div>
-      {notes.map((item, id) => {
-        const selected = selectedNoteId === id ? "selected" : "";
-        return (
-          <section key={id} className={`section is-small note-list-item ${selected}`} onClick={() => selectNote(id)}>
-            <h1>{item.title}</h1>
-            <div className="note">{item.text.slice(0, 200)}</div>
-          </section>
-        );
-      })}
+    <div className="columns">
+      <div className="column">
+        <NotesNavbar />
+        {notes.map((item, id) => {
+          const selected = selectedNoteId === id ? "selected" : "";
+          return (
+            <section key={id} className={`section is-small note-list-item ${selected}`} onClick={() => selectNote(id)}>
+              <h1>{item.title}</h1>
+              <div className="note">{item.text.slice(0, 200)}</div>
+            </section>
+          );
+        })}
+      </div>
+      <div className="column is-three-quarters content">
+        <Note />
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
-export enum Mode {
-  VIEW = "VIEW",
-  EDIT = "EDIT",
+export enum View {
+  NOTES_LIST = "NOTES_LIST",
+  EDIT_NOTE = "EDIT_NOTE",
 }
 
 export enum NoteListEvent {

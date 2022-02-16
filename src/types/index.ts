@@ -1,4 +1,4 @@
-import { Mode, NoteListEvent, ViewEvent } from "./enums";
+import { View, NoteListEvent, ViewEvent } from "./enums";
 
 export * from "./enums";
 export * from "./null-objects";
@@ -21,18 +21,21 @@ export interface ISelectNoteEvent {
 export type IRemoveNoteEvent = {
   readonly type: NoteListEvent.REMOVE_NOTE;
 };
-
-export type IChangeViewEvent = {
-  readonly type: ViewEvent.CHANGE_VIEW;
-  readonly mode: Mode;
-};
-
 export interface INoteListState {
   readonly notes: INote[];
-  readonly mode: Mode;
   readonly selectedNoteId: number | null;
 }
 
-export type EventType = IAddNoteEvent | IRemoveNoteEvent | ISelectNoteEvent | IChangeViewEvent;
+export type IChangeViewEvent = {
+  readonly type: ViewEvent.CHANGE_VIEW;
+  readonly view: View;
+};
+export interface IViewState {
+  readonly view: View;
+}
 
-export type Dispatcher = (event: EventType) => void;
+export type NotesEventType = IAddNoteEvent | IRemoveNoteEvent | ISelectNoteEvent;
+export type ViewEventType = IChangeViewEvent;
+
+export type NoteDispatcher = (event: NotesEventType) => void;
+export type ViewDispatcher = (event: ViewEventType) => void;

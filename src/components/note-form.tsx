@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-import { useNoteListActions } from "../context";
-import { INote, Mode } from "../types";
+import { useNoteListActions } from "../note-context";
+import { useViewActions } from "../view-context";
+import { INote } from "../types";
 import { validateTitle, validateText } from "../validator";
 
 type Props = {
   readonly addNote: (note: INote) => void;
-  readonly goToMainView: () => void;
+  readonly goToNotesView: () => void;
 };
 
-const NoteFormView: React.FC<Props> = ({ addNote, goToMainView }) => {
+const NoteFormView: React.FC<Props> = ({ addNote, goToNotesView }) => {
   const [title, setTitle] = useState<string>("");
   const [text, setText] = useState<string>("");
   const [showErrors, setShowErrors] = useState<boolean>(false);
@@ -21,7 +22,7 @@ const NoteFormView: React.FC<Props> = ({ addNote, goToMainView }) => {
     setShowErrors(true);
     if (descriptionIsValid && titleIsValid) {
       addNote({ title: title, text: text });
-      goToMainView();
+      goToNotesView();
     }
   };
 
@@ -73,7 +74,7 @@ const NoteFormView: React.FC<Props> = ({ addNote, goToMainView }) => {
           </button>
         </div>
         <div className="control">
-          <button className="button is-dark" onClick={goToMainView}>
+          <button className="button is-dark" onClick={goToNotesView}>
             Cancel
           </button>
         </div>
@@ -83,6 +84,7 @@ const NoteFormView: React.FC<Props> = ({ addNote, goToMainView }) => {
 };
 
 export const NoteForm: React.FC = () => {
-  const actions = useNoteListActions();
-  return <NoteFormView addNote={actions.addNote} goToMainView={actions.goToMainView} />;
+  const noteActions = useNoteListActions();
+  const viewActions = useViewActions();
+  return <NoteFormView addNote={noteActions.addNote} goToNotesView={viewActions.goToNotesView} />;
 };

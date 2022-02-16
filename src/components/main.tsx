@@ -1,32 +1,24 @@
 import React from "react";
 
-import { Note } from "./note";
+import { View } from "../types";
 import { NoteForm } from "./note-form";
 import { NotesList } from "./notes-list";
-import { NotesNavbar } from "./navigation";
-import { Mode } from "../types";
-import { useNoteListState } from "../context";
+import { useViewState } from "../view-context";
 
 type Props = {
-  readonly viewMode: Mode;
+  readonly view: View;
 };
 
-const MainView: React.FC<Props> = ({ viewMode }) => {
+const MainView: React.FC<Props> = ({ view }) => {
   return (
-    <div className="columns">
-      <div className="column">
-        <NotesNavbar />
-        <NotesList />
-      </div>
-      <div className="column is-three-quarters content">
-        {viewMode === Mode.VIEW && <Note />}
-        {viewMode === Mode.EDIT && <NoteForm />}
-      </div>
-    </div>
+    <span>
+      {view === View.NOTES_LIST && <NotesList />}
+      {view === View.EDIT_NOTE && <NoteForm />}
+    </span>
   );
 };
 
 export const Main: React.FC = () => {
-  const state = useNoteListState();
-  return <MainView viewMode={state.mode} />;
+  const state = useViewState();
+  return <MainView view={state.view} />;
 };
