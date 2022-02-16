@@ -9,3 +9,16 @@ export const getNotes = (): INote[] => {
 export const saveNotes = (notes: INote[]) => {
   window.localStorage.setItem("notes", JSON.stringify(notes));
 };
+
+export const userIsAuthenticated = (): boolean => {
+  const notes = window.localStorage.getItem("authenticated");
+  return notes === null ? false : JSON.parse(notes);
+};
+
+export const login = () => {
+  window.localStorage.setItem("authenticated", JSON.stringify(true));
+};
+
+export const logout = () => {
+  window.localStorage.setItem("authenticated", JSON.stringify(false));
+};

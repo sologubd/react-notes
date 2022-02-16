@@ -23,6 +23,7 @@ export const useChangeViewState = () => {
   const [actions] = useState(() => ({
     goToNotesView: () => changeView(dispatch)(View.NOTES_LIST),
     goToEditView: () => changeView(dispatch)(View.EDIT_NOTE),
+    goToLoginView: () => changeView(dispatch)(View.LOGIN),
   }));
 
   return [state, actions] as const;

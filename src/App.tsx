@@ -6,7 +6,7 @@ import { NotesContext } from "./note-context";
 import { viewReducer } from "./view-reducer";
 import { ViewContext } from "./view-context";
 import { View } from "./types";
-import { getNotes, saveNotes } from "./db";
+import { userIsAuthenticated, getNotes, saveNotes } from "./db";
 
 const NotesListProvider: React.FC = ({ children }) => {
   const [storedNotes] = useState(() => getNotes());
@@ -24,8 +24,9 @@ const NotesListProvider: React.FC = ({ children }) => {
 };
 
 const ViewProvider: React.FC = ({ children }) => {
+  const [isAuthenticated] = useState(() => userIsAuthenticated());
   const viewState = {
-    view: View.NOTES_LIST,
+    view: isAuthenticated ? View.NOTES_LIST : View.LOGIN,
   };
   const [state, dispatch] = useReducer(viewReducer, viewState);
 

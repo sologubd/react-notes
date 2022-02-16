@@ -7872,6 +7872,9 @@ body {
 .navbar-item {
   color: #dddddd; }
 
+.navbar-start {
+  padding-left: 1rem; }
+
 .note {
   padding: 0rem 0.5rem; }
 
@@ -7887,6 +7890,8 @@ body {
     padding: 0rem;
     background-color: #1d1f22;
     border-right: 0.1rem solid black; }
+  .columns .column.login {
+    background-color: #1d1f22; }
   .columns .column.content {
     background-color: #1e1e1e; }
 
