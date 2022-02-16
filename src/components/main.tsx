@@ -3,7 +3,7 @@ import React from "react";
 import { View } from "../types";
 import { NoteForm } from "./note-form";
 import { NotesList } from "./notes-list";
-import { useViewState } from "../view-context";
+import { useViewState } from "../models/view-context";
 import { Login } from "./auth";
 
 type Props = {

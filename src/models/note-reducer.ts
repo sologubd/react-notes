@@ -1,4 +1,4 @@
-import { INoteListState, NoteListEvent, NotesEventType } from "./types";
+import { INoteListState, NoteListEvent, NotesEventType } from "../types";
 
 export const notesReducer = (state: INoteListState, event: NotesEventType): INoteListState => {
   switch (event.type) {

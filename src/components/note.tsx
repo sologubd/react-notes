@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useNoteListState } from "../note-context";
+import { useNoteListState } from "../models/note-context";
 import { INote } from "../types";
 
 type Props = {

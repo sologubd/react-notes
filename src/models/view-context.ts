@@ -1,11 +1,7 @@
 import React, { useContext, useState } from "react";
-import { ViewDispatcher, View, nullDispathcer, ViewEvent } from "./types";
+import { IViewState, ViewDispatcher, View, ViewEvent, nullDispathcer } from "../types";
 
-interface ViewState {
-  readonly view: View;
-}
-
-export const initialState = {
+export const initialState: IViewState = {
   view: View.NOTES_LIST,
 };
 
@@ -17,7 +13,7 @@ export const changeView =
       view,
     });
 
-export const ViewContext = React.createContext<[ViewState, ViewDispatcher]>([initialState, nullDispathcer]);
+export const ViewContext = React.createContext<[IViewState, ViewDispatcher]>([initialState, nullDispathcer]);
 export const useChangeViewState = () => {
   const [state, dispatch] = useContext(ViewContext);
   const [actions] = useState(() => ({

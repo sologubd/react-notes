@@ -1,7 +1,7 @@
 import React from "react";
 
-import { useNoteListActions } from "../note-context";
-import { useViewActions } from "../view-context";
+import { useNoteListActions } from "../models/note-context";
+import { useViewActions } from "../models/view-context";
 import { logout } from "../db";
 
 type Props = {

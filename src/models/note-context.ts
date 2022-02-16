@@ -1,12 +1,7 @@
 import React, { useContext, useState } from "react";
-import { INote, NoteDispatcher, NoteListEvent, nullDispathcer, ViewEvent } from "./types";
+import { INote, INoteListState, NoteDispatcher, NoteListEvent, nullDispathcer } from "../types";
 
-interface NotesListState {
-  readonly notes: INote[];
-  readonly selectedNoteId: number | null;
-}
-
-export const initialState = {
+export const initialState: INoteListState = {
   notes: [],
   selectedNoteId: null,
 };
@@ -32,7 +27,7 @@ export const removeNote = (dispatch: NoteDispatcher) => (): void =>
     type: NoteListEvent.REMOVE_NOTE,
   });
 
-export const NotesContext = React.createContext<[NotesListState, NoteDispatcher]>([initialState, nullDispathcer]);
+export const NotesContext = React.createContext<[INoteListState, NoteDispatcher]>([initialState, nullDispathcer]);
 export const useNoteState = () => {
   const [state, dispatch] = useContext(NotesContext);
   const [actions] = useState(() => ({

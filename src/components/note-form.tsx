@@ -1,90 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer } from "react";
 
-import { useNoteListActions } from "../note-context";
-import { useViewActions } from "../view-context";
-import { INote } from "../types";
-import { validateTitle, validateText } from "../validator";
+import { NoteFormView } from "./note-form-view";
+import { useNoteListActions } from "../models/note-context";
+import { useViewActions } from "../models/view-context";
+import { initialState, NoteFormContext, useNoteFormActions, useNoteFormState } from "../models/edit-note-context";
+import { noteFormReducer } from "../models/edit-note-reducer";
 
-type Props = {
-  readonly addNote: (note: INote) => void;
-  readonly goToNotesView: () => void;
+const NoteFormProvider: React.FC = ({ children }) => {
+  const [state, dispatch] = useReducer(noteFormReducer, initialState);
+  return <NoteFormContext.Provider value={[state, dispatch]}>{children}</NoteFormContext.Provider>;
 };
 
-const NoteFormView: React.FC<Props> = ({ addNote, goToNotesView }) => {
-  const [title, setTitle] = useState<string>("");
-  const [text, setText] = useState<string>("");
-  const [showErrors, setShowErrors] = useState<boolean>(false);
+const NoteFormConsumer: React.FC = () => {
+  const noteListActions = useNoteListActions();
+  const viewActions = useViewActions();
+  const noteFormState = useNoteFormState();
+  const noteFormActions = useNoteFormActions();
 
-  const [descriptionIsValid, descriptionValidationErrors] = validateText(text);
-  const [titleIsValid, titleValidationErrors] = validateTitle(title);
-
+  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => noteFormActions.changeTitle(e.target.value);
+  const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => noteFormActions.changeText(e.target.value);
   const onSubmit = (e: React.MouseEvent<HTMLElement>) => {
-    setShowErrors(true);
-    if (descriptionIsValid && titleIsValid) {
-      addNote({ title: title, text: text });
-      goToNotesView();
+    noteFormActions.showValidationErrors(true);
+    if (noteFormState.titleIsValid && noteFormState.titleIsValid) {
+      noteListActions.addNote({ title: noteFormState.title, text: noteFormState.text });
+      viewActions.goToNotesView();
     }
   };
 
-  useEffect(() => {
-    return () => {
-      setShowErrors(true);
-    };
-  }, [title, text]);
-
   return (
-    <div className="section">
-      <h2>Add a new Note</h2>
-      <div className="field">
-        <div className="control">
-          <input
-            id="title"
-            className="input"
-            type="text"
-            placeholder="Title"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          {showErrors &&
-            titleValidationErrors.map((err) => (
-              <p key={err} className="help is-danger">
-                {err}
-              </p>
-            ))}
-        </div>
-      </div>
-      <div className="field">
-        <div className="control">
-          <textarea
-            id="note"
-            className="textarea"
-            placeholder="Add a Note"
-            onChange={(e) => setText(e.target.value)}></textarea>
-          {showErrors &&
-            descriptionValidationErrors.map((err) => (
-              <p key={err} className="help is-danger">
-                {err}
-              </p>
-            ))}
-        </div>
-      </div>
-      <div className="field is-grouped">
-        <div className="control">
-          <button className="button is-dark" onClick={onSubmit}>
-            Submit
-          </button>
-        </div>
-        <div className="control">
-          <button className="button is-dark" onClick={goToNotesView}>
-            Cancel
-          </button>
-        </div>
-      </div>
-    </div>
+    <NoteFormView
+      titleValidationErrors={noteFormState.titleValidationErrors}
+      textValidationErrors={noteFormState.textValidationErrors}
+      showValidationErrors={noteFormState.showValidationErrors}
+      onTitleChange={onTitleChange}
+      onTextChange={onTextChange}
+      goToNotesView={viewActions.goToNotesView}
+      onSubmit={onSubmit}
+    />
   );
 };
 
 export const NoteForm: React.FC = () => {
-  const noteActions = useNoteListActions();
-  const viewActions = useViewActions();
-  return <NoteFormView addNote={noteActions.addNote} goToNotesView={viewActions.goToNotesView} />;
+  return (
+    <NoteFormProvider>
+      <NoteFormConsumer />
+    </NoteFormProvider>
+  );
 };

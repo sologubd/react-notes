@@ -1,41 +1,17 @@
-import { View, NoteListEvent, ViewEvent } from "./enums";
+import { IAddNoteEvent, IRemoveNoteEvent, ISelectNoteEvent } from "./notes-list";
+import { IChangeViewEvent } from "./view";
+import { ITitleChangeEvent, ITextChangeEvent, IShowValidationErrorsEvent } from "./edit-note";
 
 export * from "./enums";
 export * from "./null-objects";
-
-export interface INote {
-  readonly title: string;
-  readonly text: string;
-}
-
-export interface IAddNoteEvent {
-  readonly type: NoteListEvent.ADD_NOTE;
-  readonly note: INote;
-}
-
-export interface ISelectNoteEvent {
-  readonly type: NoteListEvent.SELECT_NOTE;
-  readonly noteId: number;
-}
-
-export type IRemoveNoteEvent = {
-  readonly type: NoteListEvent.REMOVE_NOTE;
-};
-export interface INoteListState {
-  readonly notes: INote[];
-  readonly selectedNoteId: number | null;
-}
-
-export type IChangeViewEvent = {
-  readonly type: ViewEvent.CHANGE_VIEW;
-  readonly view: View;
-};
-export interface IViewState {
-  readonly view: View;
-}
+export * from "./edit-note";
+export * from "./notes-list";
+export * from "./view";
 
 export type NotesEventType = IAddNoteEvent | IRemoveNoteEvent | ISelectNoteEvent;
+export type NoteFormEventType = ITitleChangeEvent | ITextChangeEvent | IShowValidationErrorsEvent;
 export type ViewEventType = IChangeViewEvent;
 
 export type NoteDispatcher = (event: NotesEventType) => void;
+export type NoteFormDispatcher = (event: NoteFormEventType) => void;
 export type ViewDispatcher = (event: ViewEventType) => void;

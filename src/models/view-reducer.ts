@@ -1,4 +1,4 @@
-import { IViewState, ViewEvent, ViewEventType } from "./types";
+import { IViewState, ViewEvent, ViewEventType } from "../types";
 
 export const viewReducer = (state: IViewState, event: ViewEventType): IViewState => {
   switch (event.type) {

@@ -15,7 +15,7 @@ export const validateText = (value: string): [boolean, string[]] => {
   const extraCharacters = value.length - 1000;
   if (extraCharacters > 0) {
     isValid = false;
-    errors.push("Title cannot be empty");
+    errors.push(`Text contains ${extraCharacters} extra characters`);
   }
   return [isValid, errors];
 };

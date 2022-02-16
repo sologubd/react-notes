@@ -13,3 +13,9 @@ export enum NoteListEvent {
 export enum ViewEvent {
   CHANGE_VIEW = "CHANGE_VIEW",
 }
+
+export enum NoteFormEvent {
+  CHANGE_TITLE = "CHANGE_TITLE",
+  CHANGE_TEXT = "CHANGE_TEXT",
+  SHOW_ERRORS = "SHOW_ERRORS",
+}

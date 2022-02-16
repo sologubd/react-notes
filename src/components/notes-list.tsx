@@ -1,6 +1,6 @@
 import React from "react";
 import { INote } from "../types";
-import { useNoteState } from "../note-context";
+import { useNoteState } from "../models/note-context";
 import { NotesNavbar } from "./navigation";
 import { Note } from "./note";
 

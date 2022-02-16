@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useViewActions } from "../view-context";
+import { useViewActions } from "../models/view-context";
 import { login } from "../db";
 
 type Props = {
