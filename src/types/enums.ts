@@ -1,4 +1,4 @@
-export enum View {
+export enum ViewMode {
   NOTES_LIST = "NOTES_LIST",
   EDIT_NOTE = "EDIT_NOTE",
   LOGIN = "LOGIN",

@@ -1,27 +1,27 @@
 import React from "react";
 
-import { View } from "../types";
+import { ViewMode } from "../types";
 import { NoteForm } from "./note-form";
 import { NotesList } from "./notes-list";
 import { useViewState } from "../models/view-context";
 import { Login } from "./auth";
 
 type Props = {
-  readonly view: View;
+  readonly viewMode: ViewMode;
 };
 
-const MainView: React.FC<Props> = ({ view }) => {
-  switch (view) {
-    case View.LOGIN:
+const MainView: React.FC<Props> = ({ viewMode }) => {
+  switch (viewMode) {
+    case ViewMode.LOGIN:
       return <Login />;
-    case View.NOTES_LIST:
+    case ViewMode.NOTES_LIST:
       return <NotesList />;
-    case View.EDIT_NOTE:
+    case ViewMode.EDIT_NOTE:
       return <NoteForm />;
   }
 };
 
 export const Main: React.FC = () => {
   const state = useViewState();
-  return <MainView view={state.view} />;
+  return <MainView viewMode={state.viewMode} />;
 };

@@ -1,9 +1,9 @@
-import { ViewEvent, View } from "./enums";
+import { ViewEvent, ViewMode } from "./enums";
 
 export type IChangeViewEvent = {
   readonly type: ViewEvent.CHANGE_VIEW;
-  readonly view: View;
+  readonly viewMode: ViewMode;
 };
 export interface IViewState {
-  readonly view: View;
+  readonly viewMode: ViewMode;
 }

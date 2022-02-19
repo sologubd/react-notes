@@ -1,25 +1,25 @@
 import React, { useContext, useState } from "react";
-import { IViewState, ViewDispatcher, View, ViewEvent, nullDispathcer } from "../types";
+import { IViewState, ViewDispatcher, ViewMode, ViewEvent, nullDispathcer } from "../types";
 
 export const initialState: IViewState = {
-  view: View.NOTES_LIST,
+  viewMode: ViewMode.NOTES_LIST,
 };
 
 export const changeView =
   (dispatch: ViewDispatcher) =>
-  (view: View): void =>
+  (viewMode: ViewMode): void =>
     dispatch({
       type: ViewEvent.CHANGE_VIEW,
-      view,
+      viewMode,
     });
 
 export const ViewContext = React.createContext<[IViewState, ViewDispatcher]>([initialState, nullDispathcer]);
 export const useChangeViewState = () => {
   const [state, dispatch] = useContext(ViewContext);
   const [actions] = useState(() => ({
-    goToNotesView: () => changeView(dispatch)(View.NOTES_LIST),
-    goToEditView: () => changeView(dispatch)(View.EDIT_NOTE),
-    goToLoginView: () => changeView(dispatch)(View.LOGIN),
+    goToNotesView: () => changeView(dispatch)(ViewMode.NOTES_LIST),
+    goToEditView: () => changeView(dispatch)(ViewMode.EDIT_NOTE),
+    goToLoginView: () => changeView(dispatch)(ViewMode.LOGIN),
   }));
 
   return [state, actions] as const;

@@ -5,7 +5,7 @@ export const viewReducer = (state: IViewState, event: ViewEventType): IViewState
     case ViewEvent.CHANGE_VIEW: {
       return {
         ...state,
-        view: event.view,
+        viewMode: event.viewMode,
       };
     }
   }

@@ -10,7 +10,7 @@ type Props = {
 const LoginView: React.FC<Props> = ({ onSubmit }) => {
   // Fake login form, just as an example.
   // If a user submits the form it stores to the local storage that
-  // the user is authenticated and redirects to the Main View
+  // the user is authenticated and redirects to the Main ViewMode
   return (
     <div className="columns">
       <div className="column"></div>

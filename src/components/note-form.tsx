@@ -1,17 +1,11 @@
-import React, { useReducer } from "react";
+import React from "react";
 
 import { NoteFormView } from "./note-form-view";
 import { useNoteListActions } from "../models/note-context";
 import { useViewActions } from "../models/view-context";
-import { initialState, NoteFormContext, useNoteFormActions, useNoteFormState } from "../models/edit-note-context";
-import { noteFormReducer } from "../models/edit-note-reducer";
+import { useNoteFormActions, useNoteFormState } from "../models/edit-note-context";
 
-const NoteFormProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(noteFormReducer, initialState);
-  return <NoteFormContext.Provider value={[state, dispatch]}>{children}</NoteFormContext.Provider>;
-};
-
-const NoteFormConsumer: React.FC = () => {
+export const NoteForm: React.FC = () => {
   const noteListActions = useNoteListActions();
   const viewActions = useViewActions();
   const noteFormState = useNoteFormState();
@@ -37,13 +31,5 @@ const NoteFormConsumer: React.FC = () => {
       goToNotesView={viewActions.goToNotesView}
       onSubmit={onSubmit}
     />
-  );
-};
-
-export const NoteForm: React.FC = () => {
-  return (
-    <NoteFormProvider>
-      <NoteFormConsumer />
-    </NoteFormProvider>
   );
 };
