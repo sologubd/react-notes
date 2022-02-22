@@ -1,6 +1,7 @@
-export enum Mode {
-  VIEW = "VIEW",
-  EDIT = "EDIT",
+export enum ViewMode {
+  NOTES_LIST = "NOTES_LIST",
+  EDIT_NOTE = "EDIT_NOTE",
+  LOGIN = "LOGIN",
 }
 
 export enum NoteListEvent {
@@ -11,4 +12,10 @@ export enum NoteListEvent {
 
 export enum ViewEvent {
   CHANGE_VIEW = "CHANGE_VIEW",
+}
+
+export enum NoteFormEvent {
+  CHANGE_TITLE = "CHANGE_TITLE",
+  CHANGE_TEXT = "CHANGE_TEXT",
+  SHOW_ERRORS = "SHOW_ERRORS",
 }
