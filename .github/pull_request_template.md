@@ -9,6 +9,6 @@ Link to the ticket in [trello](link_to_trello)
 *What parts of the application might be affected*
 
 ## Testing
-*If it's a bugfix, please provide testing steps *
+*If it's a bugfix, please provide testing steps*
 * step 1
 * step 2
