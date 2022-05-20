@@ -1,14 +1,14 @@
-Link to the ticket in [trello](https://duckduckgo.com).
+Link to the ticket in [trello](link_to_trello)
 
 
-#### What is the feature? (Describe what the feature is)
+#### What is the solution? 
+*A short description of the solution*
 
 
-#### What is the solution? (Describe at a high level how the feature was implemented)
+#### What areas of the site does it impact? 
+*What parts of the application might be affected*
 
+#### Testing
+*If it's a bugfix, please provide testing steps *
 
-#### What areas of the site does it impact? (Describe what parts of the site are impacted and*if*code touched other areas)
-
-
-#### How to test? (Describe the prerequisites and the steps to test)
-
+* A list item.
