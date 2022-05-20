@@ -1,13 +1,13 @@
 # Link to the ticket in [trello](link_to_trello)
 
-## A short description of the solution
+### A short description of the solution
 
-## What parts of the application might be affected?*
+### What parts of the application might be affected?*
 
-## Checklist
+### Checklist
 - [ ] I fixed|updated|added tests each feature (if applicable).
 
-## Testing
+### Testing
 *If it's a bugfix, please provide testing steps*
 * step 1
 * step 2
